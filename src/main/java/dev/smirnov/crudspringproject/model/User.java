@@ -7,10 +7,11 @@ import java.util.Date;
  * @author pavelsmirnov
  */
 @Entity
-@Table(name = "Users")
+@Table(name = "users")
 public class User {
 
     @Id
+    //@Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -21,14 +22,14 @@ public class User {
     private String lastName;
 
     @Column(name = "birthDate")
-    private Date birthDate;
+    private String birthDate;
 
     @Column(name = "telNumber")
     private Long telNumber;
 
     public User() {}
 
-    public User(Long id, String firstName, String lastName, Date birthDate, Long telNumber) {
+    public User(Long id, String firstName, String lastName, String birthDate, Long telNumber) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -60,11 +61,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Date getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 
