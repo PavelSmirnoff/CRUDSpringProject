@@ -1,7 +1,7 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--<%@ page session="false" %>--%>
 <%--
   Created by IntelliJ IDEA.
   User: pavelsmirnov
@@ -15,9 +15,9 @@
     <title>Пользователи</title>
 </head>
 <body>
-<c:forEach var="counter" begin="1" end="8">
-    <c:out value="${counter}"/>
-</c:forEach>
+<c:out value="This is JSTL"/>
+<c:out value="${text}" />
+
 <h2>Список пользователей</h2>
     <table>
         <tr>
