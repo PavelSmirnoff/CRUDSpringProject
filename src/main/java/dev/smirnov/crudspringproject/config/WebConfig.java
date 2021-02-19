@@ -83,8 +83,8 @@ public class WebConfig {
     @Bean
     ViewResolver viewResolver(){
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/WEB-INF/pages/");
-        resolver.setSuffix(".jsp");
+        resolver.setPrefix(env.getProperty("setPrefix"));
+        resolver.setSuffix(env.getProperty("setSuffix"));
         return resolver;
     }
 }

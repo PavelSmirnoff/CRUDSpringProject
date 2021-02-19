@@ -19,31 +19,30 @@
 <c:out value="${text}" />
 
 <h2>Список пользователей</h2>
-    <table>
+<table>
+    <tr>
+        <th>id</th>
+        <th>Фамилия</th>
+        <th>Имя</th>
+        <th>Дата рождения</th>
+        <th>Телефон</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <c:forEach var="user" items="${userList}">
         <tr>
-            <th>id</th>
-            <th>Фамилия</th>
-            <th>Имя</th>
-            <th>Дата рождения</th>
-            <th>Телефон</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <td><c:out value="${user.id}" /></td>
+            <td>${user.firstName}</td>
+            <td>${user.lastName}</td>
+            <td>${user.birthDate}</td>
+            <td>${user.telNumber}</td>
+            <td>Edit</td>
+            <td>Delete</td>
         </tr>
-        <c:forEach var="user" items="${userList}">
-            <tr>
-                <td><c:out value="${user.id}" /></td>
-                <td>${user.firstName}</td>
-                <td>${user.lastName}</td>
-                <td>${user.birthDate}</td>
-                <td>${user.telNumber}</td>
-                <td>Edit</td>
-                <td>Delete</td>
-            </tr>
-        </c:forEach>
-    </table>
+    </c:forEach>
+</table>
 
 <h2>Добавить пользователя</h2>
-<c:url var="addAction" value="/users"/>
 <form:form method="post" action="users" modelAttribute="user">
     <table>
         <tr>
