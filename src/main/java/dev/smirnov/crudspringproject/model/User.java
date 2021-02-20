@@ -1,6 +1,7 @@
 package dev.smirnov.crudspringproject.model;
 
 import javax.persistence.*;
+import java.io.File;
 import java.util.Date;
 
 /**
@@ -26,6 +27,28 @@ public class User {
 
     @Column(name = "telNumber")
     private Long telNumber;
+
+    @Column(name = "file")
+    private File file;
+
+    @Column(name = "test")
+    private TestBD testBD;
+
+    public TestBD getTestBD() {
+        return testBD;
+    }
+
+    public void setTestBD(TestBD testBD) {
+        this.testBD = testBD;
+    }
+
+    public File getFile() {
+        return file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
+    }
 
     public User() {}
 
