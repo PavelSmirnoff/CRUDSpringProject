@@ -4,10 +4,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
-import java.io.File;
 import java.util.Collection;
-import java.util.Date;
 import java.util.Set;
 
 /**
@@ -18,6 +15,7 @@ import java.util.Set;
 public class User implements UserDetails {
 
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -34,7 +32,6 @@ public class User implements UserDetails {
     private Long telNumber;
 
     @Column(name = "password")
-    @Size(min=5, message = "Не меньше 5 знаков")
     private String password;
 
     @Transient

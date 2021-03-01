@@ -3,6 +3,7 @@
 src/main/resources/
 *.iml
 *.iws
+Old_files/
 
 # Mac
 .DS_Store

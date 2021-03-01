@@ -5,6 +5,7 @@
          version="4.0">
 
     <filter>
+    <!--Позволяет работать с русскими символами-->
         <filter-name>encodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
         <init-param>
@@ -22,5 +23,4 @@
     </filter-mapping>
 
 </web-app>
-        <!--Позволяет работать с русскими символами-->
 

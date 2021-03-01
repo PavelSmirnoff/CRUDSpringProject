@@ -59,14 +59,6 @@
       <version>${spring.version}</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/javax/javaee-api -->
-    <dependency>
-      <groupId>javax</groupId>
-      <artifactId>javaee-api</artifactId>
-      <version>8.0.1</version>
-      <scope>provided</scope>
-    </dependency>
-
     <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
     <dependency>
       <groupId>org.hibernate</groupId>
@@ -86,18 +78,37 @@
       <artifactId>mysql-connector-java</artifactId>
       <version>8.0.23</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/jstl/jstl -->
+<!--    &lt;!&ndash; https://mvnrepository.com/artifact/jstl/jstl &ndash;&gt;-->
+<!--    <dependency>-->
+<!--      <groupId>jstl</groupId>-->
+<!--      <artifactId>jstl</artifactId>-->
+<!--      <version>1.2</version>-->
+<!--    </dependency>-->
+<!--    &lt;!&ndash; https://mvnrepository.com/artifact/javax.servlet.jsp.jstl/jstl-api &ndash;&gt;-->
+<!--    <dependency>-->
+<!--      <groupId>javax.servlet.jsp.jstl</groupId>-->
+<!--      <artifactId>jstl-api</artifactId>-->
+<!--      <version>1.2</version>-->
+<!--    </dependency>-->
+
+    <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
     <dependency>
-      <groupId>jstl</groupId>
-      <artifactId>jstl</artifactId>
-      <version>1.2</version>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>4.0.1</version>
+      <scope>provided</scope>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/javax.servlet.jsp.jstl/jstl-api -->
+
+    <!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf-spring5 -->
     <dependency>
-      <groupId>javax.servlet.jsp.jstl</groupId>
-      <artifactId>jstl-api</artifactId>
-      <version>1.2</version>
+      <groupId>org.thymeleaf</groupId>
+      <artifactId>thymeleaf-spring5</artifactId>
+      <version>3.0.12.RELEASE</version>
     </dependency>
+
+
+
+
 
   </dependencies>
 
