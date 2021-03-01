@@ -9,7 +9,7 @@
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>CRUDSringProject Maven Webapp</name>
+  <name>CRUDSpringProject Maven Webapp</name>
   <!-- FIXME change it to the project's website -->
   <url>http://localhost:8088/</url>
 
@@ -17,7 +17,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
-    <spring.version>5.3.3</spring.version>
+    <spring.version>5.2.0.RELEASE</spring.version>
   </properties>
 
   <dependencies>
@@ -46,6 +46,19 @@
       <artifactId>spring-orm</artifactId>
       <version>${spring.version}</version>
     </dependency>
+
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-web</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-config</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
     <!-- https://mvnrepository.com/artifact/javax/javaee-api -->
     <dependency>
       <groupId>javax</groupId>
@@ -86,17 +99,10 @@
       <version>1.2</version>
     </dependency>
 
-
-
-
-
-
-
-
   </dependencies>
 
   <build>
-    <finalName>CRUDSringProject</finalName>
+    <finalName>CRUDSpringProject</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>

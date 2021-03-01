@@ -30,8 +30,6 @@ public class UserController {
 
     @PostMapping("/users/add")
     public String addUser(@ModelAttribute("user") User user) {
-        File file = new File("text.txt");
-        user.setFile(file);
         if (user.getId() == null) {
             this.userService.createUser(user);
         } else {
