@@ -33,6 +33,11 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public User getUserByName(String firstName) {
+        return em.find(User.class, firstName);
+    }
+
+    @Override
     public void updateUser(User user) {
         em.merge(user);
     }

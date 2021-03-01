@@ -13,36 +13,36 @@ import java.io.File;
  * @author pavelsmirnov
  */
 @Controller
-public class UserController {
+public class AdminController {
     private final UserService userService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public AdminController(UserService userService) {
         this.userService = userService;
     }
 
-    @GetMapping("/users")
+    @GetMapping("/admin")
     public String getUsers(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("userList", this.userService.getUsers());
-        return "/users";
+        return "/admin";
     }
 
-    @PostMapping("/users/add")
+    @PostMapping("/admin/add")
     public String addUser(@ModelAttribute("user") User user) {
         if (user.getId() == null) {
             this.userService.createUser(user);
         } else {
             this.userService.updateUser(user);
         }
-        return "redirect:/users";
+        return "redirect:/admin";
     }
 
     //@RequestMapping("/delete/{id}")
     @GetMapping("/delete/{id}")
     public String deleteUser(@PathVariable("id") long id) {
         this.userService.deleteUser(id);
-        return "redirect:/users";
+        return "redirect:/admin";
     }
 
     //@RequestMapping("/edit/{id}")
@@ -50,6 +50,6 @@ public class UserController {
     public String editUsers(@PathVariable("id") long id, Model model) {
         model.addAttribute("user", this.userService.getUserById(id));
         model.addAttribute("userList", this.userService.getUsers());
-        return "/users";
+        return "/admin";
     }
 }

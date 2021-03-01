@@ -17,7 +17,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
-    <spring.version>5.2.0.RELEASE</spring.version>
   </properties>
 
   <dependencies>
@@ -32,31 +31,35 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
-      <version>${spring.version}</version>
+      <version>5.3.4</version>
     </dependency>
+
     <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
-      <version>${spring.version}</version>
+      <version>5.3.4</version>
     </dependency>
+
     <!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-orm</artifactId>
-      <version>${spring.version}</version>
+      <version>5.3.4</version>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-web</artifactId>
-      <version>${spring.version}</version>
+      <version>5.4.5</version>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-config</artifactId>
-      <version>${spring.version}</version>
+      <version>5.4.5</version>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
@@ -106,10 +109,16 @@
       <version>3.0.12.RELEASE</version>
     </dependency>
 
-
-
-
-
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>2.14.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>2.14.0</version>
+    </dependency>
   </dependencies>
 
   <build>

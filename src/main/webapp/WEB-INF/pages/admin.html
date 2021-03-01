@@ -33,6 +33,8 @@
             <th>Id</th>
             <th>Фамилия</th>
             <th>Имя</th>
+            <th>Пароль</th>
+            <th>Роли</th>
             <th>Дата рождения</th>
             <th>Телефон</th>
             <th>Edit</th>
@@ -44,6 +46,8 @@
                 <td th:text="${user.id}"></td>
                 <td th:text="${user.firstName}"></td>
                 <td th:text="${user.lastName}"></td>
+                <td th:text="${user.password}"></td>
+                <td th:text="${user.roles;}"></td>
                 <td th:text="${user.birthDate}"></td>
                 <td th:text="${user.telNumber}"></td>
                 <td><a th:href="@{'/edit/'+${user.id}}"> Edit </a></td>
@@ -79,6 +83,22 @@
             </td>
             <td>
                 <input id="lastName" name="lastName" th:field="*{lastName}" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Пароль</label>
+            </td>
+            <td>
+                <input id="password" name="password" th:field="*{password}" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Роли</label>
+            </td>
+            <td>
+                <input id="roles" name="roles" th:field="*{roles}" />
             </td>
         </tr>
         <tr>
