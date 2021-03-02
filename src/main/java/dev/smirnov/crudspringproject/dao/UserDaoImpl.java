@@ -1,10 +1,12 @@
 package dev.smirnov.crudspringproject.dao;
 
+import dev.smirnov.crudspringproject.model.Role;
 import dev.smirnov.crudspringproject.model.User;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -24,6 +26,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void createUser(User user) {
+        user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
         em.persist(user);
     }
 
@@ -34,7 +37,10 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User getUserByName(String firstName) {
-        return em.find(User.class, firstName);
+        User user = em.createQuery(
+                "SELECT u from User u WHERE u.firstName = :firstName", User.class).
+                setParameter("firstName", firstName).getSingleResult();
+        return user;
     }
 
     @Override

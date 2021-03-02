@@ -90,13 +90,6 @@ public class WebConfig  implements WebMvcConfigurer {
         return properties;
     }
 
-    //    @Bean
-//    ViewResolver viewResolver(){
-//        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-//        resolver.setPrefix(env.getProperty("setPrefix"));
-//        resolver.setSuffix(env.getProperty("setSuffix"));
-//        return resolver;
-//    }
     @Bean
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
@@ -124,12 +117,5 @@ public class WebConfig  implements WebMvcConfigurer {
         registry.viewResolver(resolver);
     }
 
-//    @Override
-//    public void addViewControllers(ViewControllerRegistry registry) {
-//        registry.addViewController("/login").setViewName("login");
-//        registry.addViewController("/user").setViewName("user");
-//        registry.addViewController("/admin").setViewName("admin");
-//        registry.addViewController("/").setViewName("index");
-//    }
 
 }

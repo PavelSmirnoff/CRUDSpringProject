@@ -10,14 +10,14 @@ import java.util.List;
 @Controller
 public class UserController {
 
-	@GetMapping(value = "/")
+	@GetMapping(value = "/user")
 	public String indexPage(ModelMap model) {
 		List<String> messages = new ArrayList<>();
 		messages.add("Хай! User");
 		messages.add("Это Spring MVC приложение,");
 		messages.add("Ты на своей персональной странице.");
 		model.addAttribute("messages", messages);
-		return "гыук";
+		return "user";
 	}
 	
 }

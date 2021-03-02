@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="ru">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ru">
 <head>
     <meta charset="UTF-8"/>
     <title>CRUD Spring project - Главная страница</title>
@@ -7,6 +8,7 @@
 <body>
     <h2>Приложение Spring MVC</h2>
     <a th:href="@{/login}">Войти</a>
+    <br/>
     <div>
         <th:block th:each="msg : ${messages}">
             <h1 th:text="${msg}"></h1>

@@ -3,6 +3,9 @@ package dev.smirnov.crudspringproject.service;
 import dev.smirnov.crudspringproject.dao.UserDao;
 import dev.smirnov.crudspringproject.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,7 +15,7 @@ import java.util.List;
  * @author pavelsmirnov
  */
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService, UserDetailsService {
     private UserDao userDao;
 
     @Autowired
@@ -48,5 +51,10 @@ public class UserServiceImpl implements UserService{
     @Transactional
     public List<User> getUsers() {
         return this.userDao.getUsers();
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        return userDao.getUserByName(s);
     }
 }

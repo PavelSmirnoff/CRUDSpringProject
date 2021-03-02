@@ -2,7 +2,6 @@ package dev.smirnov.crudspringproject.config;
 
 import dev.smirnov.crudspringproject.config.handler.LoginSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -21,7 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserDetailsService userDetailsService; // сервис, с помощью которого тащим пользователя
     private final LoginSuccessHandler loginSuccessHandler; // класс, в котором описана логика перенаправления пользователей по ролям
 
-    public SecurityConfig(@Qualifier("userDetailsServiceImpl") UserDetailsService userDetailsService, LoginSuccessHandler loginSuccessHandler) {
+    public SecurityConfig(UserDetailsService userDetailsService, LoginSuccessHandler loginSuccessHandler) {
         this.userDetailsService = userDetailsService;
         this.loginSuccessHandler = loginSuccessHandler;
     }
@@ -38,18 +37,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin()
-                // указываем страницу с формой логина
-                .loginPage("/login")
-                //указываем логику обработки при логине
-                .successHandler(loginSuccessHandler)
-                // указываем action с формы логина
-                .loginProcessingUrl("/login")
-                // Указываем параметры логина и пароля с формы логина
-                .usernameParameter("j_username")
-                .passwordParameter("j_password")
-                // даем доступ к форме логина всем
-                .permitAll();
+        http.authorizeRequests()
+                .antMatchers("/").permitAll() // доступность всем
+                .antMatchers("/user").access("hasAnyRole('ROLE_USER')") // разрешаем входить на /user пользователям с ролью User
+                .antMatchers("/admin").access("hasAnyRole('ROLE_ADMIN')") // разрешаем входить на /user пользователям с ролью User
+                .and().formLogin()  // Spring сам подставит свою логин форму
+                .successHandler(loginSuccessHandler); // подключаем наш SuccessHandler для перенеправления по ролям
+
+//        http.formLogin()
+//                // указываем страницу с формой логина
+//                .loginPage("/login")
+//                //указываем логику обработки при логине
+//                .successHandler(loginSuccessHandler)
+//                // указываем action с формы логина
+//                .loginProcessingUrl("/login")
+//                // Указываем параметры логина и пароля с формы логина
+//                .usernameParameter("j_username")
+//                .passwordParameter("j_password")
+//                // даем доступ к форме логина всем
+//                .permitAll();
 
         http.logout()
                 // разрешаем делать логаут всем
@@ -57,20 +63,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // указываем URL логаута
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 // указываем URL при удачном логауте
-                .logoutSuccessUrl("/login?logout")
+                .logoutSuccessUrl("/")
                 //выклчаем кроссдоменную секьюрность (на этапе обучения неважна)
                 .and().csrf().disable();
 
-        http
-                // делаем страницу регистрации недоступной для авторизированных пользователей
-                .authorizeRequests()
-                .antMatchers("/").permitAll() // доступность всем
-                //страницы аутентификаци доступна всем
-                .antMatchers("/login").anonymous()
-                // защищенные URL
-                .antMatchers("/user").access("hasAnyRole('ROLE_USER')") // разрешаем входить на /user пользователям с ролью User
-                .antMatchers("/admin").access("hasAnyRole('ROLE_ADMIN')") // разрешаем входить на /admin пользователям с ролью Admin
-                .anyRequest().authenticated();
+//        http
+//                // делаем страницу регистрации недоступной для авторизированных пользователей
+//                .authorizeRequests()
+//                .antMatchers("/").permitAll() // доступность всем
+//                //страницы аутентификаци доступна всем
+//                .antMatchers("/login").anonymous()
+//                // защищенные URL
+//                .antMatchers("/user").access("hasAnyRole('ROLE_USER')") // разрешаем входить на /user пользователям с ролью User
+//                .antMatchers("/admin").access("hasAnyRole('ROLE_ADMIN')") // разрешаем входить на /admin пользователям с ролью Admin
+//                .anyRequest().authenticated();
     }
 
     @Bean

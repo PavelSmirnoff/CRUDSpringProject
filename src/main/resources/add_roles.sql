@@ -1,2 +1,2 @@
-INSERT INTO public.role(id, name)
+INSERT INTO CRUDSpringProject.role(id, name)
 VALUES (1, 'ROLE_USER'), (2, 'ROLE_ADMIN');

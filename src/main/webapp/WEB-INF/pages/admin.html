@@ -25,7 +25,8 @@
     </style>
 </head>
 <body>
-<a th:href="@{/}"><<< back to main page</a>
+<a th:href="@{/}"><<< back to main page</a> <br/>
+<a th:href="@{/logout}">Logout</a>
 <h2>Список пользователей</h2>
 <div th:unless="${#lists.isEmpty(userList)}">
     <table style="">
@@ -47,7 +48,11 @@
                 <td th:text="${user.firstName}"></td>
                 <td th:text="${user.lastName}"></td>
                 <td th:text="${user.password}"></td>
-                <td th:text="${user.roles;}"></td>
+                <td >
+                    <th:block th:each="role : ${user.roles}">
+                        <span th:text="${role.name}"></span>
+                    </th:block>
+                </td>
                 <td th:text="${user.birthDate}"></td>
                 <td th:text="${user.telNumber}"></td>
                 <td><a th:href="@{'/edit/'+${user.id}}"> Edit </a></td>
@@ -59,7 +64,7 @@
 
 <h2 th:text="${user.id != null} ? 'Редактировать' : 'Добавить'" > пользователя</h2>
 
-<form action="#" th:action="@{/users/add}" th:object="${user}" method="post">
+<form action="#" th:action="@{/admin/add}" th:object="${user}" method="post">
     <table>
             <tr th:if="${user.id != null}">
                 <td>
@@ -93,14 +98,14 @@
                 <input id="password" name="password" th:field="*{password}" />
             </td>
         </tr>
-        <tr>
-            <td>
-                <label>Роли</label>
-            </td>
-            <td>
-                <input id="roles" name="roles" th:field="*{roles}" />
-            </td>
-        </tr>
+<!--        <tr>-->
+<!--            <td>-->
+<!--                <label>Роли</label>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <input id="roles" name="roles" th:field="*{roles}" />-->
+<!--            </td>-->
+<!--        </tr>-->
         <tr>
             <td>
                 <label>Дата рождения</label>

@@ -19,7 +19,7 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "firstName", unique = true)
+    @Column(name = "firstName", unique = true, length = 20, nullable = false)
     private String firstName;
 
     @Column(name = "lastName")

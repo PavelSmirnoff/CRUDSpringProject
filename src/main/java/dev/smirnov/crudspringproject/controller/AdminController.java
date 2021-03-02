@@ -7,8 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.File;
-
 /**
  * @author pavelsmirnov
  */
@@ -30,11 +28,11 @@ public class AdminController {
 
     @PostMapping("/admin/add")
     public String addUser(@ModelAttribute("user") User user) {
-        if (user.getId() == null) {
-            this.userService.createUser(user);
-        } else {
-            this.userService.updateUser(user);
-        }
+            if (user.getId() == null) {
+                this.userService.createUser(user);
+            } else {
+                this.userService.updateUser(user);
+            }
         return "redirect:/admin";
     }
 
