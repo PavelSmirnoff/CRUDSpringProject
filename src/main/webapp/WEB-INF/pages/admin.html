@@ -55,7 +55,7 @@
                 </td>
                 <td th:text="${user.birthDate}"></td>
                 <td th:text="${user.telNumber}"></td>
-                <td><a th:href="@{'/edit/'+${user.id}}"> Edit </a></td>
+                <td><a th:href="@{'/admin/edit/'+${user.id}}"> Edit </a></td>
                 <td><a th:href="@{'/delete/'+${user.id}}"> Delete </a></td>
             </tr>
         </th:block>
@@ -64,7 +64,7 @@
 
 <h2 th:text="${user.id != null} ? 'Редактировать' : 'Добавить'" > пользователя</h2>
 
-<form action="#" th:action="@{/admin/add}" th:object="${user}" method="post">
+<form action="#" th:action="@{/admin/adduser}" th:object="${user}" method="post">
     <table>
             <tr th:if="${user.id != null}">
                 <td>
@@ -98,14 +98,27 @@
                 <input id="password" name="password" th:field="*{password}" />
             </td>
         </tr>
-<!--        <tr>-->
-<!--            <td>-->
-<!--                <label>Роли</label>-->
-<!--            </td>-->
-<!--            <td>-->
-<!--                <input id="roles" name="roles" th:field="*{roles}" />-->
-<!--            </td>-->
-<!--        </tr>-->
+        <tr>
+            <td>
+                <label>Роли</label>
+            </td>
+            <td>
+<!--                <select id="roles" th:field="*{roles}" size="4" multiple="multiple">-->
+<!--                    <option th:each="role : ${roleList}"-->
+<!--                            th:value="${role.id}"-->
+<!--                            th:text="${role.name}">-->
+<!--                    </option>-->
+<!--                </select>-->
+
+                <select  th:field="*{roles}" >
+                    <option th:each="r :${roleList}"
+                            th:value="${{r.id}}"
+                            th:text="${r.name}">
+                    </option>
+                </select>
+
+            </td>
+        </tr>
         <tr>
             <td>
                 <label>Дата рождения</label>
@@ -130,5 +143,47 @@
     </table>
 </form>
 
+<h2>Список доступных ролей</h2>
+<div th:unless="${#lists.isEmpty(roleList)}">
+    <table style="">
+        <tr>
+            <th>Id</th>
+            <th>Роль</th>
+            <th>Delete</th>
+        </tr>
+        <th:block th:each="role : ${roleList}">
+            <tr>
+                <td th:text="${role.id}"></td>
+                <td th:text="${role.name}"></td>
+                <td><a th:href="@{'/admin/deleterole/'+${role.id}}"> Delete </a></td>
+            </tr>
+        </th:block>
+    </table>
+</div>
+<form action="#" th:action="@{/admin/addrole}" th:object="${role}" method="post">
+    <table>
+        <tr th:if="${role.id != null}">
+            <td>
+                <label>Id</label>
+            </td>
+            <td>
+                <input id="id" name="id" th:field="*{id}" readonly/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Роль</label>
+            </td>
+            <td>
+                <input id="name" name="name" th:field="*{name}" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center;">
+                <input type="submit" value="Добавить роль" />
+            </td>
+        </tr>
+    </table>
+</form>
 </body>
 </html>

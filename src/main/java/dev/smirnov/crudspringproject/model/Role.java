@@ -12,7 +12,11 @@ import java.util.Set;
 @Table(name = "role")
 public class Role implements GrantedAuthority {
     @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "name", unique = true, length = 20, nullable = false)
     private String name;
     @Transient
     @ManyToMany(mappedBy = "roles")
