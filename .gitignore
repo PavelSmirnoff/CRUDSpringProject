@@ -1,6 +1,5 @@
 # Intellij
 .idea/
-src/main/resources/
 *.iml
 *.iws
 Old_files/
