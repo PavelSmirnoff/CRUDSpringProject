@@ -32,6 +32,11 @@ public class RoleDaoImpl implements RoleDao{
     }
 
     @Override
+    public Role getRoleById(Long id) {
+        return em.find(Role.class, id);
+    }
+
+    @Override
     @SuppressWarnings("unchecked")
     public List<Role> getRoles() {
         return em.createQuery("from Role", Role.class).getResultList();

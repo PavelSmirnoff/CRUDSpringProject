@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <html lang="ru">
 <head>
     <meta charset="UTF-8"/>
@@ -26,6 +27,7 @@
 </head>
 <body>
 <a th:href="@{/}"><<< back to main page</a> <br/>
+<a th:href="@{/user}">personal page</a> <br/>
 <a th:href="@{/logout}">Logout</a>
 <h2>Список пользователей</h2>
 <div th:unless="${#lists.isEmpty(userList)}">
@@ -50,7 +52,7 @@
                 <td th:text="${user.password}"></td>
                 <td >
                     <th:block th:each="role : ${user.roles}">
-                        <span th:text="${role.name}"></span>
+                        <span th:text="${role.name}"></span><br/>
                     </th:block>
                 </td>
                 <td th:text="${user.birthDate}"></td>
@@ -103,20 +105,11 @@
                 <label>Роли</label>
             </td>
             <td>
-<!--                <select id="roles" th:field="*{roles}" size="4" multiple="multiple">-->
-<!--                    <option th:each="role : ${roleList}"-->
-<!--                            th:value="${role.id}"-->
-<!--                            th:text="${role.name}">-->
-<!--                    </option>-->
-<!--                </select>-->
-
-                <select  th:field="*{roles}" >
-                    <option th:each="r :${roleList}"
-                            th:value="${{r.id}}"
-                            th:text="${r.name}">
-                    </option>
-                </select>
-
+                <div class="checkbox" th:each="role: ${roleList}">
+                    <label th:text="${role.name}"></label>
+                    <input id="rL" name="rL" type="checkbox" th:value="${role.id}"
+                           th:checked="${#lists.contains(userRole, role.id)} ? 'checked'"/>
+                </div>
             </td>
         </tr>
         <tr>

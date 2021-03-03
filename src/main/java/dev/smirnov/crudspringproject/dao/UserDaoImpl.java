@@ -26,7 +26,9 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void createUser(User user) {
-        user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
+        if(user.getRoles()==null) {
+            user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
+        }
         em.persist(user);
     }
 

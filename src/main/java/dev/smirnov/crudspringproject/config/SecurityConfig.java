@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/").permitAll() // доступность всем
-                .antMatchers("/user").access("hasAnyRole('ROLE_USER')") // разрешаем входить на /user пользователям с ролью User
+                .antMatchers("/user").access("hasAnyRole('ROLE_USER','ROLE_ADMIN')") // разрешаем входить на /user пользователям с ролью User
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 //.antMatchers("/admin").access("hasAnyRole('ROLE_ADMIN')") // разрешаем входить на /user пользователям с ролью User
                 .and().formLogin()  // Spring сам подставит свою логин форму

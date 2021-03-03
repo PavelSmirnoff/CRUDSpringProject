@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
-      lang="ru">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html lang="ru">
 <head>
     <meta charset="UTF-8"/>
     <title>CRUD Spring project - Страницв пользователя</title>
 </head>
 <body>
-
+<a th:href="@{/}"><<< back to main page</a> <br/>
 <a th:href="@{/logout}">Logout</a>
 
     <h2>Приложение Spring MVC</h2>
@@ -17,11 +18,13 @@
         </th:block>
     </div>
 <h2>Welcome</h2>
-<div sec:authorize="hasRole('USER')">Text visible to user.</div>
-<div sec:authorize="hasRole('ADMIN')">Text visible to admin.</div>
+<div sec:authorize="hasRole('ROLE_USER')">Text visible to user.</div>
+<div sec:authorize="hasRole('ROLE_ADMIN')">Text visible to admin.</div>
 <div sec:authorize="isAuthenticated()">
     Text visible only to authenticated users.
 </div>
+<div sec:authorize="hasAuthority('ROLE_USER')" > Has Authority USER </div>
+
 Authenticated username:
 <div sec:authentication="name"></div>
 Authenticated user roles:

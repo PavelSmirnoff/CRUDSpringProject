@@ -7,7 +7,13 @@ import dev.smirnov.crudspringproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @author pavelsmirnov
@@ -27,14 +33,21 @@ public class AdminController {
     public String getUsers(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("role", new Role());
+        model.addAttribute("userRole", new LinkedHashSet<Long>());
         model.addAttribute("roleList", this.roleService.getRoles());
         model.addAttribute("userList", this.userService.getUsers());
         return "/admin";
     }
 
     @PostMapping("/admin/adduser")
-    public String addUser(@ModelAttribute("user") User user) {
-            if (user.getId() == null) {
+    public String addUser(@ModelAttribute("user") User user, @RequestParam("rL") String[] roles) {
+        Set<Role> roleList = new LinkedHashSet<>();
+        for(int i=0; i < roles.length ; i++){
+            roleList.add(this.roleService.getRoleById(Long.parseLong(roles[i])));
+        }
+
+        user.setRoles(roleList);
+        if (user.getId() == null) {
                 this.userService.createUser(user);
             } else {
                 this.userService.updateUser(user);
@@ -52,7 +65,11 @@ public class AdminController {
     //@RequestMapping("/edit/{id}")
     @GetMapping("/admin/edit/{id}")
     public String editUsers(@PathVariable("id") long id, Model model) {
-        model.addAttribute("user", this.userService.getUserById(id));
+        User user = this.userService.getUserById(id);
+        Set<Long> integerList = new LinkedHashSet<>();
+        user.getRoles().forEach(x -> integerList.add(x.getId()));
+        model.addAttribute("user", user);
+        model.addAttribute("userRole", integerList);
         model.addAttribute("userList", this.userService.getUsers());
         model.addAttribute("role", new Role());
         model.addAttribute("roleList", this.roleService.getRoles());
