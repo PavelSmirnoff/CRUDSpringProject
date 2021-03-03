@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <html lang="ru">
 <head>
     <meta charset="UTF-8"/>
@@ -29,6 +29,10 @@ Authenticated username:
 <div sec:authentication="name"></div>
 Authenticated user roles:
 <div sec:authentication="principal.authorities"></div>
+
+<div th:text="${#authentication.name}">
+    The value of the "name" property of the authentication object should appear here.
+</div>
 
 </body>
 </html>
