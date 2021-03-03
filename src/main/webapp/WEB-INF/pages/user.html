@@ -10,28 +10,12 @@
 <a th:href="@{/}"><<< back to main page</a> <br/>
 <a th:href="@{/logout}">Logout</a>
 
-    <h2>Приложение Spring MVC</h2>
+<h2>Это твоя страница, <span sec:authentication="name"></span></h2>
 
-    <div>
-        <th:block th:each="msg : ${messages}">
-            <h1 th:text="${msg}"></h1>
-        </th:block>
-    </div>
-<h2>Welcome</h2>
-<div sec:authorize="hasRole('ROLE_USER')">Text visible to user.</div>
-<div sec:authorize="hasRole('ROLE_ADMIN')">Text visible to admin.</div>
-<div sec:authorize="isAuthenticated()">
-    Text visible only to authenticated users.
-</div>
-<div sec:authorize="hasAuthority('ROLE_USER')" > Has Authority USER </div>
-
-Authenticated username:
-<div sec:authentication="name"></div>
-Authenticated user roles:
-<div sec:authentication="principal.authorities"></div>
-
-<div th:text="${#authentication.name}">
-    The value of the "name" property of the authentication object should appear here.
+<div>
+    <th:block th:each="msg : ${messages}">
+        <h1 th:text="${msg}"></h1>
+    </th:block>
 </div>
 
 </body>

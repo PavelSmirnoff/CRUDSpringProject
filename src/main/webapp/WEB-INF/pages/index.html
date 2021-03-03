@@ -7,28 +7,21 @@
     <title>CRUD Spring project - Главная страница</title>
 </head>
 <body>
-    <h2>Приложение Spring MVC</h2>
+<h2>Приложение Spring MVC</h2>
+<div sec:authorize="isAnonymous()">
     <a th:href="@{/login}">Войти</a>
-    <br/>
-    <div>
-        <th:block th:each="msg : ${messages}">
-            <h1 th:text="${msg}"></h1>
-        </th:block>
-    </div>
-
-    <h2>Welcome</h2>
-    <p>Spring Security Thymeleaf tutorial</p>
-    <div sec:authorize="hasRole('USER')">Text visible to user.</div>
-    <div sec:authorize="hasRole('ADMIN')">Text visible to admin.</div>
-    <div sec:authorize="isAuthenticated()">
-        Text visible only to authenticated users.
-    </div>
-    Authenticated username:
-    <div sec:authentication="name"></div>
-    Authenticated user roles:
-    <div sec:authentication="principal.authorities"></div>
-
-    Logged user: <span sec:authentication="name">Bob</span>
-    Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>
+</div>
+<div sec:authorize="hasRole('ADMIN')"><a th:href="@{/admin}">Admin page</a> <br/></div>
+<div sec:authorize="hasRole('USER')"><a th:href="@{/user}">Personal User page</a> <br/></div>
+<div sec:authorize="isAuthenticated()">
+    Logged user: <span sec:authentication="name">xxx</span><br/>
+    <a th:href="@{/logout}">Logout</a><br/>
+</div>
+<br/>
+<div>
+    <th:block th:each="msg : ${messages}">
+        <h1 th:text="${msg}"></h1>
+    </th:block>
+</div>
 </body>
 </html>
