@@ -4,6 +4,7 @@ import dev.smirnov.crudspringproject.model.Role;
 import dev.smirnov.crudspringproject.model.User;
 import org.springframework.stereotype.Repository;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Collections;
@@ -54,4 +55,6 @@ public class UserDaoImpl implements UserDao {
     public void deleteUser(Long id) {
         em.remove(em.find(User.class, id));
     }
+
+
 }
