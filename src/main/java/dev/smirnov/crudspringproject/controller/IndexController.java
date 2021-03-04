@@ -19,5 +19,4 @@ public class IndexController {
 		model.addAttribute("messages", messages);
 		return "index";
 	}
-	
 }

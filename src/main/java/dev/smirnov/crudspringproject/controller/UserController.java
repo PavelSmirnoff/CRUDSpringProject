@@ -13,7 +13,6 @@ public class UserController {
 	@GetMapping(value = "/user")
 	public String indexPage(ModelMap model) {
 		List<String> messages = new ArrayList<>();
-
 		messages.add("Это Spring MVC приложение,");
 		messages.add("Ты на своей персональной странице.");
 		model.addAttribute("messages", messages);
