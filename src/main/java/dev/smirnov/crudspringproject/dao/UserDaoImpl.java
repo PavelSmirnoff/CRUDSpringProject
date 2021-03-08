@@ -4,9 +4,9 @@ import dev.smirnov.crudspringproject.model.Role;
 import dev.smirnov.crudspringproject.model.User;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 import java.util.Collections;
 import java.util.List;
 
@@ -16,7 +16,7 @@ import java.util.List;
 @Repository
 public class UserDaoImpl implements UserDao {
 
-    @PersistenceContext
+    @PersistenceContext(type = PersistenceContextType.EXTENDED)
     private EntityManager em;
 
     @Override

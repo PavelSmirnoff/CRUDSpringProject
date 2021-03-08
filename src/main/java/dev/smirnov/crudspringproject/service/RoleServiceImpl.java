@@ -14,6 +14,7 @@ import java.util.List;
  * дата создания 02.03.2021
  */
 @Service
+@Transactional
 public class RoleServiceImpl implements RoleService{
     private RoleDao roleDao;
 
@@ -23,25 +24,25 @@ public class RoleServiceImpl implements RoleService{
     }
 
     @Override
-    @Transactional
+    //@Transactional
     public void createRole(Role role) {
         roleDao.createRole(role);
     }
 
     @Override
-    @Transactional
+    //@Transactional
     public void deleteRole(Long id) {
         roleDao.deleteRole(id);
     }
 
     @Override
-    @Transactional
+    //@Transactional
     public List<Role> getRoles() {
         return roleDao.getRoles();
     }
 
     @Override
-    @Transactional
+    //@Transactional
     public Role getRoleById(Long id) {
         return roleDao.getRoleById(id);
     }

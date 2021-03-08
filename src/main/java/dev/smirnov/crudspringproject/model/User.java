@@ -1,7 +1,5 @@
 package dev.smirnov.crudspringproject.model;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -39,9 +37,12 @@ public class User implements UserDetails {
     @Transient
     private String passwordConfirm;
 
-    @Fetch(FetchMode.JOIN)
+    //@Fetch(FetchMode.JOIN)
     @ManyToMany(fetch = FetchType.LAZY)
-    //@ManyToMany(fetch = FetchType.EAGER)
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(name = "users_role",
+//            joinColumns = { @JoinColumn(name = "User_id") },
+//            inverseJoinColumns = { @JoinColumn(name = "roles_id") })
     private Set<Role> roles;
 
     public User() {}

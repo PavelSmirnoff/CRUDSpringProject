@@ -15,6 +15,7 @@ import java.util.List;
  * @author pavelsmirnov
  */
 @Service
+@Transactional
 public class UserServiceImpl implements UserService, UserDetailsService {
     private UserDao userDao;
 
@@ -24,37 +25,37 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    @Transactional
+    //@Transactional
     public void createUser(User user) {
         this.userDao.createUser(user);
     }
 
     @Override
-    @Transactional
+    //@Transactional
     public User getUserById(Long id) {
         return this.userDao.getUserById(id);
     }
 
     @Override
-    @Transactional
+    //@Transactional
     public void updateUser(User user) {
         this.userDao.updateUser(user);
     }
 
     @Override
-    @Transactional
+    //@Transactional
     public void deleteUser(Long id) {
         this.userDao.deleteUser(id);
     }
 
     @Override
-    @Transactional
+    //@Transactional
     public List<User> getUsers() {
         return this.userDao.getUsers();
     }
 
     @Override
-    @Transactional
+    //@Transactional
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         return userDao.getUserByName(s);
     }
